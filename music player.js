@@ -40,8 +40,7 @@ var repeatAgain = false;
 var musicList = [
 
     {
-//         music: "songs/Ricch_Forever.mp3",
-        music: "https://up.bazenation.link/wp-content/uploads/2020/01/Roddy_Ricch_-_Ricch_Forever.mp3",
+        music: "songs/Ricch_Forever.mp3",
         name: "Roddy Ricch",
         title: "Ricch Forever",
         image: "images/ricch forever.jpg"
