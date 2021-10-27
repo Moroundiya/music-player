@@ -33,6 +33,7 @@ var volume = document.querySelector("#volume-btn");
 var volumeRange = document.querySelector("#range");
 var showMusicList = document.getElementById("music-list-icon");
 var loveBtn = document.getElementById("love");
+var getTrack;
 
 var repeatAgain = false;
 
@@ -214,18 +215,20 @@ function shuffle(num) {
     activeColor(num);
 }
 
-function musicPlay(num) {
 
+function musicPlay(num) {
     isPlaying = true;
-    pauseBtnChange();
     artistName.textContent = musicList[num].name;
     musicTitle.textContent = musicList[num].title;
     footerImg.src = musicList[num].image;
     musicImage.src = musicList[num].image;
     track.src = musicList[num].music;
-    track.play();
+    getTrack = track.src;
+    // console.log(track)
+    // track.play();
     activeColor(num);
 }
+
 
 function activeColor(num) {
     for (let i = 0; i <= list.length; i++) {
@@ -233,6 +236,7 @@ function activeColor(num) {
         list[i].style.color = "white";
     }
 }
+
 
 var startCounter = false;
 
@@ -244,10 +248,22 @@ for (let i = 0; i < list.length; i++) {
         startMin.textContent = n + ":";
         m = -1;
         track_index = i;
-        progressCount();
+        // progressCount();
         musicPlay(i);
+       
     })
 }
+
+function startPlay() {
+    pauseBtnChange();
+    track.play();
+    progressCount();
+}
+
+track.addEventListener("loadeddata", () => {
+    startPlay();
+    
+})
 
 function playBtnChange() {
     pauseBtn.style.display = "none";
@@ -262,7 +278,7 @@ playBtn.addEventListener("click", () => {
         playBtn.style.display = "none";
         pauseBtn.style.display = "block";
         track.play();
-        t=setInterval(startInt, 1000);
+        t = setInterval(startInt, 1000);
     } else {
         alert("Please Select Any Music To Load On Deck!");
     }
@@ -273,9 +289,9 @@ playBtn.addEventListener("click", () => {
 var getCurrent;
 
 track.addEventListener("ended", () => {
-    
+
     if (getCurrent == "rgb(255, 255, 0)") {
-       
+
         clearInterval(t)
         m = 0;
         n = 0;
@@ -286,7 +302,7 @@ track.addEventListener("ended", () => {
         progressCount()
 
     } else {
-    
+
         setTimeout(() => {
             alert("This Music has Ended, Please Select Another Music To Play!")
         }, 1000);
@@ -321,14 +337,14 @@ previousMusic.addEventListener("click", () => {
         track_index -= 1;
         m = 0;
         n = 0;
-        startMin.textContent=m+":";
-        musicPlay(track_index);
+        startMin.textContent = m + ":";
+        // musicPlay(track_index);
     } else {
         m = 0;
         n = 0;
-        startMin.textContent=m+":";
+        startMin.textContent = m + ":";
         track_index = musicList.length;
-        musicPlay(track_index);
+        // musicPlay(track_index);
     }
 });
 
@@ -337,15 +353,18 @@ nextMusic.addEventListener("click", () => {
     if (track_index < musicList.length - 1) {
         m = 0;
         n = 0;
-        startMin.textContent=m+":";
+        startMin.textContent = m + ":";
         track_index += 1;
         musicPlay(track_index);
+        // startPlay();
+        // console.log(track)
     } else {
         m = 0;
         n = 0;
-        startMin.textContent=m+":";
+        startMin.textContent = m + ":";
         index_no = 0;
         musicPlay(track_index);
+        // startPlay();
     }
 });
 
@@ -378,7 +397,7 @@ function progressCount() {
     function secToTimeFormat(duration) {
         var min = Math.floor(duration / 60);
         var sec = Math.floor(duration - (min * 60));
-        console.log(sec)
+        // console.log(sec)
         return min + ":" + sec;
     }
 
