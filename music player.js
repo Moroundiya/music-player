@@ -34,6 +34,7 @@ var volumeRange = document.querySelector("#range");
 var showMusicList = document.getElementById("music-list-icon");
 var loveBtn = document.getElementById("love");
 var getTrack;
+var preloader = document.getElementById("preloader");
 
 var repeatAgain = false;
 
@@ -238,8 +239,6 @@ function activeColor(num) {
 }
 
 
-var startCounter = false;
-
 for (let i = 0; i < list.length; i++) {
 
     list[i].addEventListener("click", () => {
@@ -248,22 +247,32 @@ for (let i = 0; i < list.length; i++) {
         startMin.textContent = n + ":";
         m = -1;
         track_index = i;
-        // progressCount();
         musicPlay(i);
-       
     })
 }
 
 function startPlay() {
+    progressCount();
     pauseBtnChange();
     track.play();
-    progressCount();
 }
 
-track.addEventListener("loadeddata", () => {
-    startPlay();
-    
-})
+
+
+
+if (track.readyState == 'loading'){
+    preloader.style.display="flex";
+    console.log("loading")
+} else {
+     preloader.style.display="none";
+    console.log("loaded")
+    track.addEventListener("loadeddata", () => {
+        startPlay();
+    })
+   
+}
+
+
 
 function playBtnChange() {
     pauseBtn.style.display = "none";
@@ -313,13 +322,6 @@ track.addEventListener("ended", () => {
         startSec.textContent = " 00"
         playBtnChange();
     }
-
-    // clearInterval(t)
-    //     m = 0;
-    //     n = 0;
-    //     startMin.textContent = "0:";
-    //     startSec.textContent = " 00"
-
 })
 
 
@@ -334,37 +336,40 @@ pauseBtn.addEventListener("click", () => {
 previousMusic.addEventListener("click", () => {
 
     if (track_index > 0) {
+        clearInterval(t);
         track_index -= 1;
         m = 0;
         n = 0;
         startMin.textContent = m + ":";
-        // musicPlay(track_index);
+        musicPlay(track_index);
     } else {
+        clearInterval(t);
         m = 0;
         n = 0;
         startMin.textContent = m + ":";
         track_index = musicList.length;
-        // musicPlay(track_index);
+        musicPlay(track_index);
     }
 });
+
 
 nextMusic.addEventListener("click", () => {
 
     if (track_index < musicList.length - 1) {
+        clearInterval(t);
         m = 0;
         n = 0;
         startMin.textContent = m + ":";
         track_index += 1;
         musicPlay(track_index);
-        // startPlay();
-        // console.log(track)
+        
     } else {
+        clearInterval(t)
         m = 0;
         n = 0;
         startMin.textContent = m + ":";
         index_no = 0;
         musicPlay(track_index);
-        // startPlay();
     }
 });
 
