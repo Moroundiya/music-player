@@ -227,11 +227,18 @@ function musicPlay(num) {
     getTrack = track.src;
     // alert(track.readyState)
     setInterval(() => {
-        alert(track.readyState)
-    }, 1000);
+        // console.log(track.readyState)/
+        if (track.readyState!=="4") {
+            preloader.style.display="flex"
+        } else {
+            preloader.style.display="none"
+        }
+    }, 100);
     // console.log(track)
     // track.play();
     activeColor(num);
+
+
 }
 
 
