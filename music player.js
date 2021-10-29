@@ -240,8 +240,7 @@ function musicPlay(num) {
         if (track.readyState=="4") {
             alert("loaded");
             clearInterval(s);
-            
-            // preloader.style.display="flex"
+            preloader.style.display="flex"
             
         }
     }, 100);
