@@ -228,14 +228,19 @@ function musicPlay(num) {
     // alert(track.readyState)
     let v = setInterval(() => {
         // console.log(track.readyState)/
-        if (track.readyState=="4") {
-            alert("loaded")
+        if (track.readyState !=="4") {
+            preloader.style.display="flex"
+            // alert("loaded")
             // let getPreloader = window.getComputedStyle(preloader, null).getPropertyValue("display");
             // console.log(getPreloader)
-            getTrack = "Loaded";
+            // getTrack = "Loaded";
+            
+        } 
+        
+        if (track.readyState=="4") {
+            alert("loaded")
+            preloader.style.display="none"
             clearInterval(v);
-        } else {
-            preloader.style.display="flex"
         }
     }, 100);
     // console.log(track)
