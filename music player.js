@@ -33,13 +33,9 @@ var volume = document.querySelector("#volume-btn");
 var volumeRange = document.querySelector("#range");
 var showMusicList = document.getElementById("music-list-icon");
 var loveBtn = document.getElementById("love");
-var getTrack;
 var preloader = document.getElementById("preloader");
 
-var repeatAgain = false;
-
-
-var musicList = [
+const musicList = [
 
     {
         music: "songs/Ricch_Forever.mp3",
@@ -183,6 +179,7 @@ showMusicList.addEventListener("click", () => {
     showMusicList.classList.toggle("yellow");
     let getColor = window.getComputedStyle(showMusicList, null).getPropertyValue("color");
     if (getColor == "rgb(255, 255, 0)") {
+        alert("Kindly click on this list icon again after selecting any music of your choice to return you to the playing music page.")
         musicImage.style.display = "none";
         playDiv.style.display = "none";
         showActive.style.display = "block";
@@ -202,7 +199,6 @@ function pauseBtnChange() {
     playBtn.style.display = "none";
 }
 
-
 function shuffle(num) {
     isPlaying = true;
     pauseBtnChange();
@@ -212,7 +208,6 @@ function shuffle(num) {
     footerImg.src = musicList[num].image;
     musicImage.src = musicList[num].image;
     track.src = musicList[num].music;
-    track.play();
     activeColor(num);
 }
 
@@ -224,35 +219,19 @@ function musicPlay(num) {
     footerImg.src = musicList[num].image;
     musicImage.src = musicList[num].image;
     track.src = musicList[num].music;
-    // getTrack = track.src;
-    // alert(track.readyState)
     var s = setInterval(() => {
-        // console.log(track.readyState)/
+        if (track.readyState !== "4") {
+            preloader.style.display = "flex"
+        }
 
-        if (track.readyState !=="4") {
-            preloader.style.display="flex"
-            // alert("still loading")
-            // let getPreloader = window.getComputedStyle(preloader, null).getPropertyValue("display");
-            // console.log(getPreloader)
-            // getTrack = "Loaded";
-            
-        } 
-        
-        if (track.readyState=="4") {
-           
-            // alert("loaded");
-            preloader.style.display='none';   
+        if (track.readyState == "4") {
+            preloader.style.display = 'none';
             clearInterval(s);
             startPlay();
-            // preloader.setAttribute ('style', 'display: flex !important;');
-            
         }
     }, 100);
-    // console.log(track)
-    // track.play();
     activeColor(num);
 }
-
 
 function activeColor(num) {
     for (let i = 0; i <= list.length; i++) {
@@ -280,29 +259,10 @@ function startPlay() {
     track.play();
 }
 
-
-
-
-// if (track.readyState == 'loading'){
-//     // preloader.style.display="flex";
-//     alert("loading")
-// } else {
-    //  preloader.style.display="none";
-    // alert("loaded")
-    // track.addEventListener("loadeddata", () => {
-    //     startPlay();
-    // })
-   
-// }
-
-
-
 function playBtnChange() {
     pauseBtn.style.display = "none";
     playBtn.style.display = "block";
 }
-
-var holdV, holdV2;
 
 playBtn.addEventListener("click", () => {
 
@@ -385,7 +345,7 @@ nextMusic.addEventListener("click", () => {
         startMin.textContent = m + ":";
         track_index += 1;
         musicPlay(track_index);
-        
+
     } else {
         clearInterval(t)
         m = 0;
@@ -408,7 +368,6 @@ function startInt() {
         n++;
         startMin.textContent = n + ":";
     }
-
     meter.value = track.currentTime;
 }
 
@@ -425,7 +384,6 @@ function progressCount() {
     function secToTimeFormat(duration) {
         var min = Math.floor(duration / 60);
         var sec = Math.floor(duration - (min * 60));
-        // console.log(sec)
         return min + ":" + sec;
     }
 
@@ -451,12 +409,8 @@ shuffleMusic.addEventListener("click", () => {
         clearInterval(t);
         m = 0;
         n = 0;
-        progressCount()
         musicPlay(randomMusic);
     }
-    track.addEventListener("ended", () => {
-        alert("done")
-    })
 })
 
 volume.addEventListener("click", () => {
