@@ -227,8 +227,8 @@ function musicPlay(num) {
     getTrack = track.src;
     // alert(track.readyState)
     setInterval(() => {
-        console.log(track.readyState)
-    }, 100);
+        alert(track.readyState)
+    }, 1000);
     // console.log(track)
     // track.play();
     activeColor(num);
