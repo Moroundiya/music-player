@@ -228,10 +228,9 @@ function musicPlay(num) {
     // alert(track.readyState)
     setInterval(() => {
         // console.log(track.readyState)/
-        if (track.readyState!=="4") {
-            preloader.style.display="flex"
-        } else {
-            preloader.style.display="none"
+        if (track.readyState=="4") {
+            // preloader.style.display="flex"
+            alert("loaded")
         }
     }, 100);
     // console.log(track)
