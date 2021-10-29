@@ -231,6 +231,7 @@ function musicPlay(num) {
         if (track.readyState=="4") {
             // preloader.style.display="flex"
             alert("loaded")
+            alert(preloader.style.display);
             getTrack = "Loaded";
             clearInterval(v);
         }
