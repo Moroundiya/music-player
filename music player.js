@@ -229,11 +229,13 @@ function musicPlay(num) {
     let v = setInterval(() => {
         // console.log(track.readyState)/
         if (track.readyState=="4") {
-            // preloader.style.display="flex"
             alert("loaded")
-            alert(preloader.style.display);
+            // let getPreloader = window.getComputedStyle(preloader, null).getPropertyValue("display");
+            // console.log(getPreloader)
             getTrack = "Loaded";
             clearInterval(v);
+        } else {
+            preloader.style.display="flex"
         }
     }, 100);
     // console.log(track)
