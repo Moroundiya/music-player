@@ -225,7 +225,11 @@ function musicPlay(num) {
     musicImage.src = musicList[num].image;
     track.src = musicList[num].music;
     getTrack = track.src;
-    alert(track.readyState)
+//     alert(track.readyState)
+      setInterval(() => {
+        console.log(track.readyState)
+    }, 100);
+    // console
     // console.log(track)
     // track.play();
     activeColor(num);
