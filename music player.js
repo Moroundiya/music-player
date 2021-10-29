@@ -216,13 +216,6 @@ function shuffle(num) {
     activeColor(num);
 }
 
-function showLoad(){
-    if (track.readyState=="4") {
-        alert("loaded")
-        preloader.style.display="flex"
-        clearInterval(getTrack);
-    }
-}
 
 function musicPlay(num) {
     isPlaying = true;
@@ -233,9 +226,7 @@ function musicPlay(num) {
     track.src = musicList[num].music;
     // getTrack = track.src;
     // alert(track.readyState)
-
-   
-    getTrack = setInterval(showLoad, 100);
+    var s = setInterval(() => {
         // console.log(track.readyState)/
         // if (track.readyState !=="4") {
             // preloader.style.display="flex"
@@ -246,8 +237,13 @@ function musicPlay(num) {
             
         // } 
         
-        
-   
+        if (track.readyState=="4") {
+            clearInterval(s);
+            alert("loaded")
+            // preloader.style.display="flex"
+            
+        }
+    }, 100);
     // console.log(track)
     // track.play();
     activeColor(num);
