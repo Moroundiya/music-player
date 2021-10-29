@@ -222,7 +222,7 @@ function musicPlay(num) {
     artistName.textContent = musicList[num].name;
     musicTitle.textContent = musicList[num].title;
     footerImg.src = musicList[num].image;
-    musicImage.src = musicList[num].image;
+    musicImage.src = musicList[num].image;  
     track.src = musicList[num].music;
     // getTrack = track.src;
     // alert(track.readyState)
