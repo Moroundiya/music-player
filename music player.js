@@ -226,7 +226,7 @@ function musicPlay(num) {
     track.src = musicList[num].music;
     // getTrack = track.src;
     // alert(track.readyState)
-    let v = setInterval(() => {
+    var v = setInterval(() => {
         // console.log(track.readyState)/
 //         if (track.readyState !=="4") {
 //             preloader.style.display="flex"
