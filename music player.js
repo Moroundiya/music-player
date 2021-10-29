@@ -225,6 +225,7 @@ function musicPlay(num) {
     musicImage.src = musicList[num].image;
     track.src = musicList[num].music;
     getTrack = track.src;
+    alert(track.readyState)
     // console.log(track)
     // track.play();
     activeColor(num);
@@ -251,26 +252,26 @@ for (let i = 0; i < list.length; i++) {
     })
 }
 
-function startPlay() {
-    progressCount();
-    pauseBtnChange();
-    track.play();
-}
+// function startPlay() {
+//     progressCount();
+//     pauseBtnChange();
+//     track.play();
+// }
 
 
 
 
-if (track.readyState == 'loading'){
-    // preloader.style.display="flex";
-    alert("loading")
-} else {
+// if (track.readyState == 'loading'){
+//     // preloader.style.display="flex";
+//     alert("loading")
+// } else {
     //  preloader.style.display="none";
-    alert("loaded")
+    // alert("loaded")
     // track.addEventListener("loadeddata", () => {
     //     startPlay();
     // })
    
-}
+// }
 
 
 
