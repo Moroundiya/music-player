@@ -261,14 +261,14 @@ function startPlay() {
 
 
 if (track.readyState == 'loading'){
-    preloader.style.display="flex";
-    console.log("loading")
+    // preloader.style.display="flex";
+    alert("loading")
 } else {
-     preloader.style.display="none";
-    console.log("loaded")
-    track.addEventListener("loadeddata", () => {
-        startPlay();
-    })
+    //  preloader.style.display="none";
+    alert("loaded")
+    // track.addEventListener("loadeddata", () => {
+    //     startPlay();
+    // })
    
 }
 
