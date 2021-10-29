@@ -226,7 +226,7 @@ function musicPlay(num) {
     track.src = musicList[num].music;
     // getTrack = track.src;
     // alert(track.readyState)
-    var v = setInterval(() => {
+    getTrack = setInterval(() => {
         // console.log(track.readyState)/
 //         if (track.readyState !=="4") {
 //             preloader.style.display="flex"
@@ -240,7 +240,7 @@ function musicPlay(num) {
         if (track.readyState=="4") {
             alert("loaded")
             preloader.style.display="flex"
-            clearInterval(v);
+            clearInterval(getTrack);
         }
     }, 100);
     // console.log(track)
