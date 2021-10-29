@@ -51,6 +51,7 @@ body {
     flex-direction: column;
     font-size: 18px;
     box-shadow: 1px 1px 9px white;
+    z-index: 20;
 
 }
 
