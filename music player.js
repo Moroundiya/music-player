@@ -238,10 +238,11 @@ function musicPlay(num) {
         // } 
         
         if (track.readyState=="4") {
-           
-            alert("loaded");
             preloader.style.display='flex';   
+             alert("loaded");
             clearInterval(s);
+           
+          
             // preloader.setAttribute ('style', 'display: flex !important;');
             
         }
