@@ -224,20 +224,20 @@ function musicPlay(num) {
     footerImg.src = musicList[num].image;
     musicImage.src = musicList[num].image;
     track.src = musicList[num].music;
-    getTrack = track.src;
+    // getTrack = track.src;
     // alert(track.readyState)
-    setInterval(() => {
+    let v = setInterval(() => {
         // console.log(track.readyState)/
         if (track.readyState=="4") {
             // preloader.style.display="flex"
             alert("loaded")
+            getTrack = "Loaded";
+            clearInterval(v);
         }
     }, 100);
     // console.log(track)
     // track.play();
     activeColor(num);
-
-
 }
 
 
