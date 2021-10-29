@@ -238,8 +238,9 @@ function musicPlay(num) {
         // } 
         
         if (track.readyState=="4") {
+            alert("loaded");
             clearInterval(s);
-            alert("loaded")
+            
             // preloader.style.display="flex"
             
         }
